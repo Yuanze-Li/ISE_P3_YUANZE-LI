@@ -47,7 +47,7 @@ void ThAlarma (void *argument) {
   while (1) {
     cnt = 0;
     
-    //osThreadFlagsWait(0x01, osFlagsWaitAny, osWaitForever);
+    osThreadFlagsWait(0x01, osFlagsWaitAny, osWaitForever);
     osTimerStart(periodic_id, 1000U);
     while(cnt < 6)
     {
@@ -209,11 +209,11 @@ void RTC_Alarm_Config(void)
   
   def_alarm.AlarmTime.Hours = stimestructureget.Hours;
   def_alarm.AlarmTime.Minutes = stimestructureget.Minutes;
-  def_alarm.AlarmTime.Seconds = 30;
+  def_alarm.AlarmTime.Seconds = 0;
   def_alarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
   def_alarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
   def_alarm.Alarm = RTC_ALARM_A;
-  def_alarm.AlarmDateWeekDay = 1;
+  def_alarm.AlarmDateWeekDay = 0;
   def_alarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
   def_alarm.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY | RTC_ALARMMASK_HOURS | RTC_ALARMMASK_MINUTES;
 

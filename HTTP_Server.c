@@ -193,7 +193,8 @@ __NO_RETURN void app_main (void *arg) {
   LED_Initialize();
   Init_LCD ();
   RTC_Config();
-  //RTC_CalendarConfig(sdatestructure,stimestructure);
+  RTC_CalendarConfig(sdatestructure,stimestructure);
+  RTC_Alarm_Config();
   Init_Alarma();
   //TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
   TID_Display = osThreadNew (Display,  NULL, NULL);
