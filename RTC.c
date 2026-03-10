@@ -29,6 +29,7 @@ void RTC_Alarm_IRQHandler(void);
 static void periodic_Callback (void *argument);
  
 int Init_Alarma (void) {
+  //uint32_t exc1 = 5U;
   tid_alarma = osThreadNew(ThAlarma, NULL, NULL);
   if (tid_alarma == NULL) {
     return(-1);
@@ -46,7 +47,7 @@ void ThAlarma (void *argument) {
   while (1) {
     cnt = 0;
     
-    osThreadFlagsWait(0x01, osFlagsWaitAny, osWaitForever);
+    //osThreadFlagsWait(0x01, osFlagsWaitAny, osWaitForever);
     osTimerStart(periodic_id, 1000U);
     while(cnt < 6)
     {
