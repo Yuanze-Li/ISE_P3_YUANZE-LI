@@ -190,37 +190,39 @@ __NO_RETURN void app_main (void *arg) {
   //LCD_init();
   //Init_LCD();
   netInitialize ();
+  LED_Initialize();
   Init_LCD ();
   RTC_Config();
-  RTC_CalendarConfig(sdatestructure,stimestructure);
-  TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
+  //RTC_CalendarConfig(sdatestructure,stimestructure);
+  Init_Alarma();
+  //TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
   TID_Display = osThreadNew (Display,  NULL, NULL);
-  Init_SNTP();
-  
-    HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-  
-    __HAL_RCC_GPIOB_CLK_ENABLE();
-  
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  
-  GPIO_InitStruct.Pin = GPIO_PIN_0; //Verde
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  
-  GPIO_InitStruct.Pin = GPIO_PIN_7; // Azul
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  
-  GPIO_InitStruct.Pin = GPIO_PIN_14; // Rojo
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  
-  
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+//  Init_SNTP();
+//  
+//    HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+//  
+//    __HAL_RCC_GPIOB_CLK_ENABLE();
+//  
+//  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//  GPIO_InitStruct.Pull = GPIO_PULLUP;
+//  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+//  
+//  GPIO_InitStruct.Pin = GPIO_PIN_0; //Verde
+//  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+//  
+//  GPIO_InitStruct.Pin = GPIO_PIN_7; // Azul
+//  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+//  
+//  GPIO_InitStruct.Pin = GPIO_PIN_14; // Rojo
+//  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+//  
+//  
+//  __HAL_RCC_GPIOC_CLK_ENABLE();
+//  
+//  GPIO_InitStruct.Pin = GPIO_PIN_13;
+//  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+//  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+//  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
   
 
   
