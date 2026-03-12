@@ -19,6 +19,7 @@
 #include "ADC.h"
 #include "RTC.h"
 #include "SNTP.h"
+#include "buttom.h"
 //#include "Board_Buttons.h"              // ::Board Support:Buttons
 //#include "Board_ADC.h"                  // ::Board Support:A/D Converter
 //#include "Board_GLCD.h"                 // ::Board Support:Graphic LCD
@@ -160,7 +161,7 @@ static __NO_RETURN void BlinkLed (void *arg) {
  *---------------------------------------------------------------------------*/
 __NO_RETURN void app_main (void *arg) {
   (void)arg;
-  GPIO_InitTypeDef GPIO_InitStruct;
+  
 
 
   RTC_DateTypeDef sdatestructure;
@@ -185,45 +186,23 @@ __NO_RETURN void app_main (void *arg) {
   
   LED_Initialize();
   ADC1_pins_F429ZI_config();
- // Buttons_Initialize();
-  //ADC_Initialize();
-  //LCD_init();
-  //Init_LCD();
+ 
   netInitialize ();
   LED_Initialize();
   Init_LCD ();
+  osDelay(5000);
+  Init_SNTP();
+  
   RTC_Config();
   RTC_CalendarConfig(sdatestructure,stimestructure);
   RTC_Alarm_Config();
   Init_Alarma();
+  Init_Buttom();
   //TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
   TID_Display = osThreadNew (Display,  NULL, NULL);
-//  Init_SNTP();
-//  
-//    HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-//  
-//    __HAL_RCC_GPIOB_CLK_ENABLE();
-//  
-//  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-//  GPIO_InitStruct.Pull = GPIO_PULLUP;
-//  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-//  
-//  GPIO_InitStruct.Pin = GPIO_PIN_0; //Verde
-//  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-//  
-//  GPIO_InitStruct.Pin = GPIO_PIN_7; // Azul
-//  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-//  
-//  GPIO_InitStruct.Pin = GPIO_PIN_14; // Rojo
-//  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 //  
 //  
-//  __HAL_RCC_GPIOC_CLK_ENABLE();
-//  
-//  GPIO_InitStruct.Pin = GPIO_PIN_13;
-//  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-//  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-//  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
   
 
   

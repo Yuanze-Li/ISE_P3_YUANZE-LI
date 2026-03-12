@@ -47,3 +47,4 @@
 .\debug\http_server.o: ADC.h
 .\debug\http_server.o: RTC.h
 .\debug\http_server.o: SNTP.h
+.\debug\http_server.o: buttom.h

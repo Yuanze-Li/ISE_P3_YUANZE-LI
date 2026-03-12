@@ -473,6 +473,16 @@
               <FileType>5</FileType>
               <FilePath>.\sntp.h</FilePath>
             </File>
+            <File>
+              <FileName>buttom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\buttom.c</FilePath>
+            </File>
+            <File>
+              <FileName>buttom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\buttom.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1078,6 +1088,16 @@
               <FileName>sntp.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\sntp.h</FilePath>
+            </File>
+            <File>
+              <FileName>buttom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\buttom.c</FilePath>
+            </File>
+            <File>
+              <FileName>buttom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\buttom.h</FilePath>
             </File>
           </Files>
         </Group>

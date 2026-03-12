@@ -7,7 +7,7 @@
 /*----------------------------------------------------------------------------
  *      Thread 1 'Thread_Name': Sample thread
  *---------------------------------------------------------------------------*/
-  const NET_ADDR4 ntp_server_1 = { NET_ADDR_IP4 , NULL, 129, 6, 15, 28 };
+  const NET_ADDR4 ntp_server_1 = { NET_ADDR_IP4 , NULL, 213,161,194,93 };
  
  const NET_ADDR4 ntp_server_2 = { NET_ADDR_IP4 , NULL, 130, 206,   3, 166 };
  
@@ -38,7 +38,6 @@ void ThSNTP (void *argument) {
   while (1) {
     get_time();
     osDelay(180000);
-    ; // Insert thread code here...
     osThreadYield();                            // suspend thread
   }
 }
@@ -46,82 +45,30 @@ void ThSNTP (void *argument) {
 
 void get_time (void) {
   if (netSNTPc_GetTime ((NET_ADDR *)&ntp_server_1 , time_callback) == netOK) {
-    //printf ("SNTP request sent.\n");
-    LED_On(0);
-    osDelay(500);
-    LED_Off(0);
-//    osDelay(500);
-//    LED_On(0);
-//    osDelay(500);
-//    LED_Off(0);
-//    osDelay(500);
-//    LED_On(0);
-//    osDelay(500);
-//    LED_Off(0);
+    printf ("SNTP request sent.\n");
     
   }
   else {
-   //printf ("SNTP not ready or bad parameters.\n");
+   printf ("SNTP not ready or bad parameters.\n");
 
   }
 }
  
 static void time_callback (uint32_t seconds, uint32_t seconds_fraction) {
   if (seconds == 0) {
-//    LED_On(2);
-//    osDelay(500);
-//    LED_Off(2);
-//    osDelay(500);
-//    LED_On(2);
-//    osDelay(500);
-//    LED_Off(2);
-//    osDelay(500);
-//    LED_On(2);
-//    osDelay(500);
-//    LED_Off(2);
-//    osDelay(500);
-//    LED_On(2);
-//    osDelay(500);
-//    LED_Off(2);
-//    osDelay(500);
-    //printf ("Server not responding or bad response.\n");
+    //unix_to_datetime_rtc(seconds);
+    printf ("Server not responding or bad response.\n");
   }
   else {
     
     unix_to_datetime_rtc(seconds);
-    LED_On(2);
-    osDelay(250);
-    LED_Off(2);
-    osDelay(250);
-    LED_On(2);
-    osDelay(250);
-    LED_Off(2);
-    osDelay(250);
-    LED_On(2);
-    osDelay(250);
-    LED_Off(2);
-    osDelay(250);
-    LED_On(2);
-    osDelay(250);
-    LED_Off(2);
-    osDelay(250);
+    for(int i = 0; i < 20; i++) {
+      LED_On(2);
+      osDelay(100);
+      LED_Off(2);
+      osDelay(100);
+    }
 
-    
-    
-    
-    //printf ("%d seconds elapsed since 1.1.1970\n", seconds);
-    
-//    time_t     now;
-//    struct tm  ts;
-//    char       buf[80];
-
-//    // Get current time
-//    time(&now);
-
-//    // Format time, "ddd yyyy-mm-dd hh:mm:ss zzz"
-//    ts = *localtime(&now);
-//    strftime(buf, sizeof(buf), "%a %Y-%m-%d %H:%M:%S %Z", &ts);
-//    printf("%s\n", buf);
   }
 }
 
@@ -136,7 +83,7 @@ void unix_to_datetime_rtc(uint32_t unix_time) {
   //         dt->tm_year + 1900, dt->tm_mon + 1, dt->tm_mday,
     //       dt->tm_hour, dt->tm_min, dt->tm_sec);
   
-    /* Set Date: Tuesday February 18th 2014 */
+
   sdatest_ntp.Year = decimal_to_bcd(dt->tm_year-100) ;
   sdatest_ntp.Month = decimal_to_bcd(dt->tm_mon + 1);
   sdatest_ntp.Date = decimal_to_bcd(dt->tm_mday);
@@ -144,7 +91,7 @@ void unix_to_datetime_rtc(uint32_t unix_time) {
   
 
   /*##-2- Configure the Time #################################################*/
-  /* Set Time: 02:00:00 */
+
   stimestr_ntp.Hours = decimal_to_bcd(dt->tm_hour+1);
   stimestr_ntp.Minutes = decimal_to_bcd(dt->tm_min);
   stimestr_ntp.Seconds = decimal_to_bcd(dt->tm_sec);

@@ -249,7 +249,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 
   //  /*##-1- Configure the Date #################################################*/
-  /* Set Date: Tuesday February 18th 2014 */
+  /* Set Date: Monday Jan 1st 2000 */
   sdatestructure.Year = 0x00;
   sdatestructure.Month = RTC_MONTH_JANUARY;
   sdatestructure.Date = 0x1;
@@ -257,7 +257,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   
 
   /*##-2- Configure the Time #################################################*/
-  /* Set Time: 02:00:00 */
+  /* Set Time: 00:00:00 */
   stimestructure.Hours = 0x00;
   stimestructure.Minutes = 0x00;
   stimestructure.Seconds = 0x00;

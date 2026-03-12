@@ -10,6 +10,7 @@
 ".\debug\stm32f4xx_hal_msp.o"
 ".\debug\stm32f4xx_it.o"
 ".\debug\sntp.o"
+".\debug\buttom.o"
 ".\debug\irq_armv7m.o"
 ".\debug\rtx_delay.o"
 ".\debug\rtx_evflags.o"
