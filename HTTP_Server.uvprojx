@@ -337,7 +337,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>HSE_VALUE=8000000</Define>
+              <Define>HSE_VALUE=25000000</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -1438,7 +1438,7 @@
           <targetInfo name="Debug"/>
         </targetInfos>
       </component>
-      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Service" Csub="Web Server Compact" Cvariant="HTTP" Cvendor="Keil" Cversion="7.15.0" condition="Network Web Server Compact">
+      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Service" Csub="Web Server Compact" Cvariant="HTTP" Cvendor="Keil" Cversion="7.15.0" condition="Network Web Server Compact" isDefaultVariant="1">
         <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.13.0"/>
         <targetInfos>
           <targetInfo name="Debug"/>
@@ -1674,7 +1674,7 @@
           <targetInfo name="Release"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" name="Network\Config\Net_Config_HTTP_Server.h" version="7.1.0">
+      <file attr="config" category="header" name="Network\Config\Net_Config_HTTP_Server.h" version="7.2.0">
         <instance index="0">RTE\Network\Net_Config_HTTP_Server.h</instance>
         <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Service" Csub="Web Server Compact" Cvariant="HTTP" Cvendor="Keil" Cversion="7.15.0" condition="Network Web Server Compact" isDefaultVariant="1"/>
         <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.13.0"/>

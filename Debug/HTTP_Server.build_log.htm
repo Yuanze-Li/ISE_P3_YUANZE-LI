@@ -21,8 +21,8 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.8.0
 Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
-C:\Users\yuanze.li\Desktop\Nueva carpeta\bkup_P2\HTTP_Server.uvprojx
-Project File Date:  03/12/2026
+C:\Users\yuanze.li\Desktop\p2\bkup_P2\HTTP_Server.uvprojx
+Project File Date:  03/13/2026
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -57,10 +57,10 @@ FCARM FILE CONVERTER V2.58
 Completed 21 File(s), Ratio 87%
 Note: source file 'RTE\Device\STM32F429ZITx\system_stm32f4xx.c' - object file renamed from '.\Debug\system_stm32f4xx.o' to '.\Debug\system_stm32f4xx_1.o'.
 compiling Web.c...
-compiling Net_Config.c...
-compiling sntp.c...
+compiling EMAC_STM32F4xx.c...
+compiling SPI_STM32F4xx.c...
 linking...
-Program Size: Code=103296 RO-data=33132 RW-data=34732 ZI-data=29608  
+Program Size: Code=102904 RO-data=32936 RW-data=34732 ZI-data=29632  
 ".\Debug\HTTP_Server.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -154,32 +154,32 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: ARM::CMSIS:RTOS2:Keil RTX5:Source:5.5.3
-      Source file:   CMSIS\RTOS2\RTX\Template\Events.c
-      Source file:   CMSIS\RTOS2\RTX\Config\RTX_Config.c
       Include file:  CMSIS\RTOS2\RTX\Include\rtx_os.h
       Include file:  CMSIS\RTOS2\RTX\Config\RTX_Config.h
-      Source file:   CMSIS\RTOS2\RTX\Template\Semaphore.c
-      Source file:   CMSIS\RTOS2\RTX\Template\svc_user.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_delay.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_timer.c
       Source file:   CMSIS\RTOS2\RTX\Template\main.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_kernel.c
-      Source file:   CMSIS\RTOS2\RTX\Template\Mutex.c
+      Source file:   CMSIS\RTOS2\RTX\Template\Events.c
       Source file:   CMSIS\RTOS2\RTX\Template\MsgQueue.c
       Source file:   CMSIS\RTOS2\RTX\Template\Thread.c
-      Source file:   CMSIS\RTOS2\RTX\Template\MemPool.c
       Source file:   CMSIS\RTOS2\RTX\Template\Timer.c
+      Source file:   CMSIS\RTOS2\RTX\Template\svc_user.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_kernel.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_thread.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_memory.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_semaphore.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_mutex.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_timer.c
+      Source file:   CMSIS\RTOS2\RTX\Config\RTX_Config.c
+      Source file:   CMSIS\RTOS2\RTX\Template\MemPool.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_evflags.c
-      Source file:   CMSIS\RTOS2\RTX\Source\ARM\irq_armv7m.s
+      Source file:   CMSIS\RTOS2\RTX\Template\Semaphore.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_delay.c
+      Source file:   CMSIS\RTOS2\RTX\Template\Mutex.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_semaphore.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_msgqueue.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_system.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_mempool.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_mutex.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_memory.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_evr.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_lib.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_msgqueue.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_mempool.c
+      Source file:   CMSIS\RTOS2\RTX\Source\ARM\irq_armv7m.s
       Source file:   CMSIS\RTOS2\Source\os_systick.c
 
    * Component: Keil.ARM Compiler::Compiler:Event Recorder:DAP:1.4.0
@@ -192,9 +192,9 @@ Package Vendor: Keil
 
    * Component: Keil.MDK-Pro::Network:CORE:IPv4/IPv6 Debug:7.15.0
       Include file:  Network\Include\rl_net.h
+      Source file:   Network\Config\Net_Config.c
       Source file:   Network\Config\Net_Debug.c
       Library file:  Network\Lib\ARM\Net_Dbg_CM3_L.lib
-      Source file:   Network\Config\Net_Config.c
 
    * Component: Keil.MDK-Pro::Network:Interface:ETH:7.15.0
       Include file:  Network\Config\Net_Config_ETH.h
@@ -203,16 +203,16 @@ Package Vendor: Keil
       Include file:  Network\Config\Net_Config_SNTP_Client.h
 
    * Component: Keil.MDK-Pro::Network:Service:Web Server Compact:HTTP:7.15.0
-      Source file:   Network\Template\HTTP_Server_Error.c
-      Include file:  Network\Config\Net_Config_HTTP_Server.h
-      Source file:   Network\Template\HTTP_Server_Multiuser.c
-      Source file:   Network\Template\HTTP_Server_CGI.c
       Source file:   Network\Template\HTTP_Server_Access.c
+      Source file:   Network\Template\HTTP_Server_CGI.c
+      Source file:   Network\Template\HTTP_Server_Multiuser.c
+      Include file:  Network\Config\Net_Config_HTTP_Server.h
+      Source file:   Network\Template\HTTP_Server_Error.c
 
    * Component: Keil.MDK-Pro::Network:Socket:TCP:7.15.0
+      Source file:   Network\Template\TCP_Socket_Server.c
       Include file:  Network\Config\Net_Config_TCP.h
       Source file:   Network\Template\TCP_Socket_Client.c
-      Source file:   Network\Template\TCP_Socket_Server.c
 
    * Component: Keil.MDK-Pro::Network:Socket:UDP:7.15.0
       Source file:   Network\Template\UDP_Socket.c
@@ -228,23 +228,23 @@ Package Vendor: Keil
       Source file:   CMSIS\Driver\SPI_STM32F4xx.c
 
    * Component: Keil::Device:STM32Cube Framework:Classic:1.7.9
+      Include file:  MDK\Templates\Inc\stm32f4xx_hal_conf.h
+      Include file:  MDK\Templates\Inc\main.h
+      Include file:  MDK\Templates_LL\Inc\main.h
+      Source file:   MDK\Templates_LL\Src\main.c
+      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
+      Source file:   MDK\Templates\Src\stm32f4xx_it.c
+      Source file:   MDK\Templates\Src\main.c
       Include file:  CMSIS\Driver\Config\RTE_Device.h
       Include file:  MDK\Templates\Inc\stm32f4xx_it.h
-      Source file:   MDK\Templates\Src\main.c
-      Include file:  MDK\Templates\Inc\main.h
-      Include file:  MDK\Templates\Inc\stm32f4xx_hal_conf.h
-      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
-      Include file:  MDK\Templates_LL\Inc\main.h
-      Source file:   MDK\Templates\Src\stm32f4xx_it.c
-      Source file:   MDK\Templates_LL\Src\main.c
 
    * Component: Keil::Device:STM32Cube HAL:ADC:1.7.9
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c
 
    * Component: Keil::Device:STM32Cube HAL:Common:1.7.9
-      Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
+      Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 
    * Component: Keil::Device:STM32Cube HAL:Cortex:1.7.9
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
@@ -281,7 +281,7 @@ Package Vendor: Keil
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

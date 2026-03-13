@@ -44,7 +44,7 @@ void ThSNTP (void *argument) {
 
 
 void get_time (void) {
-  if (netSNTPc_GetTime ((NET_ADDR *)&ntp_server_1 , time_callback) == netOK) {
+  if (netSNTPc_GetTime ((NET_ADDR *)&ntp_server_2 , time_callback) == netOK) {
     printf ("SNTP request sent.\n");
     
   }

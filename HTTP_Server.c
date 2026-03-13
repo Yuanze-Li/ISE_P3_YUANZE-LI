@@ -126,7 +126,7 @@ static __NO_RETURN void Display (void *arg) {
     strcpy(msgLcd.Buffer,(char *)aShowDate);
     msgLcd.Linea = 1;
     osMessageQueuePut(queueLCD, &msgLcd, NULL, 100); 
-    //osDelay(500);
+    osDelay(500);
     osThreadYield();  
   }
 }
@@ -186,18 +186,21 @@ __NO_RETURN void app_main (void *arg) {
   
   LED_Initialize();
   ADC1_pins_F429ZI_config();
- 
-  netInitialize ();
-  LED_Initialize();
-  Init_LCD ();
-  osDelay(5000);
-  Init_SNTP();
   
+  Init_LCD ();
   RTC_Config();
   RTC_CalendarConfig(sdatestructure,stimestructure);
   RTC_Alarm_Config();
   Init_Alarma();
   Init_Buttom();
+  
+  netInitialize ();
+  //LED_Initialize();
+  
+  osDelay(5000);
+  Init_SNTP();
+  
+  
   //TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
   TID_Display = osThreadNew (Display,  NULL, NULL);
 //  
