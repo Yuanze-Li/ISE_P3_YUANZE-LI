@@ -92,7 +92,7 @@ void unix_to_datetime_rtc(uint32_t unix_time) {
 
   /*##-2- Configure the Time #################################################*/
 
-  stimestr_ntp.Hours = decimal_to_bcd(dt->tm_hour+1);
+  stimestr_ntp.Hours = decimal_to_bcd(dt->tm_hour);
   stimestr_ntp.Minutes = decimal_to_bcd(dt->tm_min);
   stimestr_ntp.Seconds = decimal_to_bcd(dt->tm_sec);
   stimestr_ntp.TimeFormat = RTC_HOURFORMAT12_AM;
