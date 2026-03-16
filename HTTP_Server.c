@@ -20,6 +20,7 @@
 #include "RTC.h"
 #include "SNTP.h"
 #include "buttom.h"
+#include "stm32f4xx_lp_modes.h"
 //#include "Board_Buttons.h"              // ::Board Support:Buttons
 //#include "Board_ADC.h"                  // ::Board Support:A/D Converter
 //#include "Board_GLCD.h"                 // ::Board Support:Graphic LCD
@@ -59,10 +60,15 @@ char lcd_text[2][20+1] = { "LCD line 1",
 osThreadId_t TID_Display;
 osThreadId_t TID_Led;
 osThreadId_t TID_RTC;
+osThreadId_t TID_Sleep;
+
+#define LED_GREEN 0U
+#define LED_RED   2U
 
 /* Thread declarations */
 static void BlinkLed (void *arg);
 static void Display  (void *arg);
+static void SleepTask (void *arg);
 
 __NO_RETURN void app_main (void *arg);
 
@@ -135,25 +141,27 @@ static __NO_RETURN void Display (void *arg) {
   Thread 'BlinkLed': Blink the LEDs on an eval board
  *---------------------------------------------------------------------------*/
 static __NO_RETURN void BlinkLed (void *arg) {
-  const uint8_t led_val[16] = { 0x48,0x88,0x84,0x44,0x42,0x22,0x21,0x11,
-                                0x12,0x0A,0x0C,0x14,0x18,0x28,0x30,0x50 };
-  uint32_t cnt = 0U;
-
   (void)arg;
 
-  LEDrun = false;
   while(1) {
-    /* Every 100 ms */
-    if (LEDrun == true) {
-      LED_SetOut (led_val[cnt]);
-      if (++cnt >= sizeof(led_val)) {
-        cnt = 0U;
-      }
-    }
-    osDelay (100);
+    LED_On(LED_GREEN);
+    osDelay(100);
+    LED_Off(LED_GREEN);
+    osDelay(100);
   }
 }
 
+static __NO_RETURN void SleepTask (void *arg) {
+  (void)arg;
+
+  osDelay(15000);
+
+  LED_On(LED_RED);
+  LP_SleepEnter();
+  LED_Off(LED_RED);
+
+  osThreadExit();
+}
 
 
 /*----------------------------------------------------------------------------
@@ -196,12 +204,14 @@ __NO_RETURN void app_main (void *arg) {
   
   netInitialize ();
   //LED_Initialize();
+
+  TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
+  TID_Sleep   = osThreadNew (SleepTask, NULL, NULL);
   
   osDelay(5000);
   Init_SNTP();
   
   
-  //TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
   TID_Display = osThreadNew (Display,  NULL, NULL);
 //  
 //  
