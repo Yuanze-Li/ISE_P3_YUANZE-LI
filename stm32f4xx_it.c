@@ -42,6 +42,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_it.h"
+#include "RTC.h"
 
 #ifdef _RTE_
 #include "RTE_Components.h"             /* Component selection */
@@ -186,6 +187,14 @@ void SysTick_Handler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
+
+void RTC_WKUP_IRQHandler(void)
+{
+  RTC_HandleTypeDef *hrtc = RTC_GetHandle();
+  if (hrtc != NULL) {
+    HAL_RTCEx_WakeUpTimerIRQHandler(hrtc);
+  }
+}
 
 
 /**

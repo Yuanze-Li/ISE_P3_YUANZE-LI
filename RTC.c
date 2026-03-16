@@ -267,3 +267,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
    RTC_CalendarConfig(sdatestructure, stimestructure);
 }
+
+RTC_HandleTypeDef *RTC_GetHandle(void) {
+  return &RtcHandle;
+}

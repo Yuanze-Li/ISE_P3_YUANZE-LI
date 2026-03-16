@@ -18,4 +18,5 @@ int  Init_Alarma(void);
 void SNTP_Date_Req(void);
 
 int Init_RTC(void);
+RTC_HandleTypeDef *RTC_GetHandle(void);
 #endif
