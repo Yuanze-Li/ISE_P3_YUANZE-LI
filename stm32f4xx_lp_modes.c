@@ -40,6 +40,11 @@
 static void SYSCLKConfig_STOP(void);
 static uint16_t LP_CalcWakeupCounter(uint32_t seconds);
 static int LP_ConfigWakeupTimer(RTC_HandleTypeDef *hrtc, uint32_t seconds);
+static void LP_IrqSaveRaw(void);
+static void LP_IrqDisableAll(void);
+
+#define NVIC_ISER_COUNT (sizeof(NVIC->ISER) / sizeof(NVIC->ISER[0]))
+static uint32_t s_nvic_iser[NVIC_ISER_COUNT];
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -94,6 +99,23 @@ void LP_SleepUntilFlag(volatile uint8_t *wake_flag)
     __WFI();
   }
   HAL_ResumeTick();
+}
+
+void LP_IrqSaveDisableAllExcept(IRQn_Type keep_irq)
+{
+  LP_IrqSaveRaw();
+  LP_IrqDisableAll();
+  NVIC_EnableIRQ(keep_irq);
+}
+
+void LP_IrqRestore(void)
+{
+  uint32_t i;
+
+  LP_IrqDisableAll();
+  for (i = 0U; i < NVIC_ISER_COUNT; i++) {
+    NVIC->ISER[i] = s_nvic_iser[i];
+  }
 }
 
 int LP_StopEnter(uint32_t wakeup_seconds)
@@ -189,6 +211,24 @@ static int LP_ConfigWakeupTimer(RTC_HandleTypeDef *hrtc, uint32_t seconds)
   }
 
   return 0;
+}
+
+static void LP_IrqSaveRaw(void)
+{
+  uint32_t i;
+
+  for (i = 0U; i < NVIC_ISER_COUNT; i++) {
+    s_nvic_iser[i] = NVIC->ISER[i];
+  }
+}
+
+static void LP_IrqDisableAll(void)
+{
+  uint32_t i;
+
+  for (i = 0U; i < NVIC_ISER_COUNT; i++) {
+    NVIC->ICER[i] = 0xFFFFFFFFU;
+  }
 }
 
 /**

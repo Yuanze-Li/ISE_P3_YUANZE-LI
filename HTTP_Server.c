@@ -172,7 +172,9 @@ static __NO_RETURN void SleepTask (void *arg) {
   LED_On(LED_RED);
 
   osKernelLock();
+  LP_IrqSaveDisableAllExcept(EXTI15_10_IRQn);
   LP_SleepUntilFlag(&g_wake_request);
+  LP_IrqRestore();
   osKernelUnlock();
 
   LED_Off(LED_RED);
