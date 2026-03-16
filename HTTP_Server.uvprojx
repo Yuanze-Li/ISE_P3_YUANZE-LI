@@ -483,6 +483,11 @@
               <FileType>5</FileType>
               <FilePath>.\buttom.h</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_lp_modes.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stm32f4xx_lp_modes.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1098,6 +1103,11 @@
               <FileName>buttom.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\buttom.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_lp_modes.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stm32f4xx_lp_modes.c</FilePath>
             </File>
           </Files>
         </Group>

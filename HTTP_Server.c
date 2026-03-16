@@ -126,7 +126,7 @@ static __NO_RETURN void Display (void *arg) {
     strcpy(msgLcd.Buffer,(char *)aShowDate);
     msgLcd.Linea = 1;
     osMessageQueuePut(queueLCD, &msgLcd, NULL, 100); 
-    osDelay(500);
+    osDelay(300);
     osThreadYield();  
   }
 }
