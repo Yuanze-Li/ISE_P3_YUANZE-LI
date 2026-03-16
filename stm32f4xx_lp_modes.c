@@ -105,7 +105,7 @@ void LP_IrqSaveDisableAllExcept(IRQn_Type keep_irq)
 {
   LP_IrqSaveRaw();
   LP_IrqDisableAll();
-  NVIC_EnableIRQ(keep_irq);
+  HAL_NVIC_EnableIRQ(keep_irq);
 }
 
 void LP_IrqRestore(void)

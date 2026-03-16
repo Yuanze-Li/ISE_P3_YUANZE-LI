@@ -173,7 +173,9 @@ static __NO_RETURN void SleepTask (void *arg) {
 
   osKernelLock();
   LP_IrqSaveDisableAllExcept(EXTI15_10_IRQn);
-  LP_SleepUntilFlag(&g_wake_request);
+  //LP_SleepUntilFlag(&g_wake_request);
+  Init_Buttom();
+  LP_SleepEnter();
   LP_IrqRestore();
   osKernelUnlock();
 
@@ -232,14 +234,15 @@ __NO_RETURN void app_main (void *arg) {
   netInitialize ();
   //LED_Initialize();
 
-  TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
-  TID_Sleep   = osThreadNew (SleepTask, NULL, NULL);
+  
   
   osDelay(5000);
   Init_SNTP();
   
   
   TID_Display = osThreadNew (Display,  NULL, NULL);
+  TID_Led     = osThreadNew (BlinkLed, NULL, NULL);
+  TID_Sleep   = osThreadNew (SleepTask, NULL, NULL);
 //  
 //  
 

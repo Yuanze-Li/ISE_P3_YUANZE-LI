@@ -488,6 +488,11 @@
               <FileType>1</FileType>
               <FilePath>.\stm32f4xx_lp_modes.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_lp_modes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\stm32f4xx_lp_modes.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1108,6 +1113,11 @@
               <FileName>stm32f4xx_lp_modes.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\stm32f4xx_lp_modes.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_lp_modes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\stm32f4xx_lp_modes.h</FilePath>
             </File>
           </Files>
         </Group>

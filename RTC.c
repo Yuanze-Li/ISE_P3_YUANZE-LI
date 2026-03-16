@@ -256,24 +256,24 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   }
 
 
-  //  /*##-1- Configure the Date #################################################*/
-  /* Set Date: Monday Jan 1st 2000 */
-  sdatestructure.Year = 0x00;
-  sdatestructure.Month = RTC_MONTH_JANUARY;
-  sdatestructure.Date = 0x1;
-  sdatestructure.WeekDay = RTC_WEEKDAY_MONDAY;
-  
+//  //  /*##-1- Configure the Date #################################################*/
+//  /* Set Date: Monday Jan 1st 2000 */
+//  sdatestructure.Year = 0x00;
+//  sdatestructure.Month = RTC_MONTH_JANUARY;
+//  sdatestructure.Date = 0x1;
+//  sdatestructure.WeekDay = RTC_WEEKDAY_MONDAY;
+//  
 
-  /*##-2- Configure the Time #################################################*/
-  /* Set Time: 00:00:00 */
-  stimestructure.Hours = 0x00;
-  stimestructure.Minutes = 0x00;
-  stimestructure.Seconds = 0x00;
-  stimestructure.TimeFormat = RTC_HOURFORMAT12_AM;
-  stimestructure.DayLightSaving = RTC_DAYLIGHTSAVING_NONE ;
-  stimestructure.StoreOperation = RTC_STOREOPERATION_RESET;
+//  /*##-2- Configure the Time #################################################*/
+//  /* Set Time: 00:00:00 */
+//  stimestructure.Hours = 0x00;
+//  stimestructure.Minutes = 0x00;
+//  stimestructure.Seconds = 0x00;
+//  stimestructure.TimeFormat = RTC_HOURFORMAT12_AM;
+//  stimestructure.DayLightSaving = RTC_DAYLIGHTSAVING_NONE ;
+//  stimestructure.StoreOperation = RTC_STOREOPERATION_RESET;
 
-   RTC_CalendarConfig(sdatestructure, stimestructure);
+//   RTC_CalendarConfig(sdatestructure, stimestructure);
 }
 
 RTC_HandleTypeDef *RTC_GetHandle(void) {
