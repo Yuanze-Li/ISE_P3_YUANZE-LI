@@ -56,6 +56,9 @@ bool LEDrun;
 char lcd_text[2][20+1] = { "LCD line 1",
                            "LCD line 2" };
 
+volatile uint8_t g_sleeping = 0U;
+volatile uint8_t g_wake_request = 0U;
+
 /* Thread IDs */
 osThreadId_t TID_Display;
 osThreadId_t TID_Led;
@@ -156,9 +159,31 @@ static __NO_RETURN void SleepTask (void *arg) {
 
   osDelay(15000);
 
+  if (TID_Display != NULL) {
+    osThreadSuspend(TID_Display);
+  }
+  if (TID_Led != NULL) {
+    osThreadSuspend(TID_Led);
+  }
+
+  g_sleeping = 1U;
+  g_wake_request = 0U;
+  LED_Off(LED_GREEN);
   LED_On(LED_RED);
-  LP_SleepEnter();
+
+  osKernelLock();
+  LP_SleepUntilFlag(&g_wake_request);
+  osKernelUnlock();
+
   LED_Off(LED_RED);
+  g_sleeping = 0U;
+
+  if (TID_Led != NULL) {
+    osThreadResume(TID_Led);
+  }
+  if (TID_Display != NULL) {
+    osThreadResume(TID_Display);
+  }
 
   osThreadExit();
 }

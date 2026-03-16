@@ -81,6 +81,21 @@ void LP_SleepEnter(void)
   HAL_ResumeTick();
 }
 
+void LP_SleepUntilFlag(volatile uint8_t *wake_flag)
+{
+  if (wake_flag == NULL) {
+    LP_SleepEnter();
+    return;
+  }
+
+  __HAL_RCC_PWR_CLK_ENABLE();
+  HAL_SuspendTick();
+  while (*wake_flag == 0U) {
+    __WFI();
+  }
+  HAL_ResumeTick();
+}
+
 int LP_StopEnter(uint32_t wakeup_seconds)
 {
   RTC_HandleTypeDef *hrtc = RTC_GetHandle();

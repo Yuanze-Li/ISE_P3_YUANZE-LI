@@ -11,6 +11,7 @@ void StandbyRTCMode_Measure(void);
 void StandbyRTCBKPSRAMMode_Measure(void);
 
 void LP_SleepEnter(void);
+void LP_SleepUntilFlag(volatile uint8_t *wake_flag);
 int  LP_StopEnter(uint32_t wakeup_seconds);
 int  LP_StandbyEnter(uint32_t wakeup_seconds);
 

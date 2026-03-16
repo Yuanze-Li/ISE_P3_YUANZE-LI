@@ -4,6 +4,8 @@
 #include "led.h"
 #include "string.h"
 
+extern volatile uint8_t g_sleeping;
+extern volatile uint8_t g_wake_request;
 
  
 osThreadId_t tid_alarma;                        // thread id
@@ -246,6 +248,12 @@ void EXTI15_10_IRQHandler(void){
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)  
 {
+  if (GPIO_Pin == GPIO_PIN_13) {
+    if (g_sleeping != 0U) {
+      g_wake_request = 1U;
+      return;
+    }
+  }
 
 
   //  /*##-1- Configure the Date #################################################*/
